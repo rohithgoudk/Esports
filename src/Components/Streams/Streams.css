@@ -1,0 +1,215 @@
+/* =========================================================
+   STREAMS SECTION — Streams.css
+   Self-contained styling for Streams.jsx.
+   Layout: 1 featured stream (full width) + 3 regular streams
+   in a row beneath it — mirrors how live platforms surface
+   the top broadcast above the rest of the grid.
+   ========================================================= */
+
+   .streams {
+    padding: 100px 24px;
+    background: #0b0b12;
+  }
+  
+  .streams .section-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  
+  .streams .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ef4444;
+    margin-bottom: 12px;
+  }
+  
+  .streams .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #ffffff;
+  }
+  
+  .stream-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 760px) {
+    .stream-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .stream-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #14141f;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .stream-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px -14px color-mix(in srgb, var(--accent, #8b5cf6) 45%, transparent);
+  }
+  
+  /* Featured card spans the full grid width, sits above the other three */
+  .stream-card.featured {
+    grid-column: 1 / -1;
+  }
+  
+  .stream-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .stream-card.featured .stream-thumb {
+    aspect-ratio: 16 / 6;
+  }
+  
+  .stream-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(8, 8, 14, 0.85) 0%,
+      rgba(8, 8, 14, 0.15) 55%,
+      rgba(8, 8, 14, 0.35) 100%
+    );
+  }
+  
+  .live-dot {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 10px 4px 8px;
+    border-radius: 999px;
+  }
+  
+  .live-dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    animation: live-pulse 1.4s ease-in-out infinite;
+  }
+  
+  @keyframes live-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+  
+  .play-icon {
+    position: relative;
+    z-index: 2;
+    font-size: 42px;
+    color: rgba(255, 255, 255, 0.85);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .stream-card.featured .play-icon {
+    font-size: 56px;
+  }
+  
+  .stream-card:hover .play-icon {
+    transform: scale(1.12);
+    color: var(--accent, #8b5cf6);
+  }
+  
+  .stream-meta {
+    padding: 18px 20px;
+  }
+  
+  .stream-meta h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+  
+  .stream-meta p {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(245, 245, 247, 0.6);
+  }
+  
+  /* Title/viewers overlaid directly on the featured thumbnail, like a banner */
+  .stream-featured-meta {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 28px 28px 24px;
+  }
+  
+  .featured-tag {
+    display: inline-flex;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent, #8b5cf6);
+    border: 1px solid var(--accent, #8b5cf6);
+    background: color-mix(in srgb, var(--accent, #8b5cf6) 14%, transparent);
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+  }
+  
+  .stream-featured-meta h3 {
+    margin: 0 0 6px;
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 800;
+    color: #ffffff;
+  }
+  
+  .stream-featured-meta p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(245, 245, 247, 0.75);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .stream-card {
+      transition: none;
+    }
+    .stream-card:hover {
+      transform: none;
+    }
+    .play-icon {
+      transition: none;
+    }
+    .live-dot::before {
+      animation: none;
+    }
+  }

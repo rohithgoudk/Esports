@@ -1,0 +1,397 @@
+/* ============================================================
+   HEADER — Stackly Arena
+   Tokens match the Home page: dark void bg, cyan/purple glows
+   ============================================================ */
+
+   :root {
+    --hdr-height: 72px;
+  
+    /* palette — copy these from Home.css if you have them there */
+    --c-bg:        #0a0a0f;
+    --c-surface:   #0f0f1a;
+    --c-border:    rgba(255, 255, 255, 0.07);
+    --c-cyan:      #00e5ff;
+    --c-purple:    #8b5cf6;
+    --c-text:      #e2e8f0;
+    --c-muted:     #64748b;
+    --c-white:     #ffffff;
+  
+    --radius-sm:   6px;
+    --radius-md:   10px;
+  
+    --font-display: "Rajdhani", "Barlow Condensed", sans-serif;
+    --font-body:    "Inter", system-ui, sans-serif;
+  
+    --transition:   0.2s ease;
+  }
+  
+  /* ── Shell ─────────────────────────────────────────────────── */
+  .hdr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--hdr-height);
+    background: transparent;
+    transition: background var(--transition), backdrop-filter var(--transition),
+      box-shadow var(--transition);
+  }
+  
+  .hdr--scrolled {
+    background: rgba(10, 10, 15, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 1px 0 var(--c-border), 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* top 1px accent line */
+  .hdr-topline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--c-purple) 25%,
+      var(--c-cyan) 75%,
+      transparent 100%
+    );
+    opacity: 0.9;
+  }
+  
+  /* ── Inner layout ───────────────────────────────────────────── */
+  .hdr-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: var(--hdr-height);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  /* ── Logo ────────────────────────────────────────────────────── */
+  .hdr-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  
+  /* Image-based logo (used when you have the .webp asset) */
+  .hdr-logo__img {
+    height: 65px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
+  
+  /* Fallback icon mark */
+  .hdr-logo__mark {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--c-purple) 0%, var(--c-cyan) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+  }
+  
+  .hdr-logo__bolt {
+    color: var(--c-white);
+    font-size: 16px;
+  }
+  
+  .hdr-logo__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  
+  .hdr-logo__name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--c-white);
+    text-transform: uppercase;
+  }
+  
+  .hdr-logo__tagline {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--c-cyan);
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+  
+  /* ── Desktop Nav ─────────────────────────────────────────────── */
+  .hdr-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .hdr-nav__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--c-muted);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+    white-space: nowrap;
+  }
+  
+  .hdr-nav__link:hover {
+    color: var(--c-text);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* active underline on hover */
+  .hdr-nav__link::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, var(--c-purple), var(--c-cyan));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  
+  .hdr-nav__link:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* LIVE badge */
+  .hdr-nav__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+  
+    /* pulse dot via box-shadow animation */
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    50%       { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); }
+  }
+  
+  /* ── Action Buttons ──────────────────────────────────────────── */
+  .hdr-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  
+  .hdr-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    border: none;
+    transition: transform var(--transition), box-shadow var(--transition),
+      background var(--transition), color var(--transition);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  
+  .hdr-btn:active {
+    transform: scale(0.97);
+  }
+  
+  .hdr-btn__icon {
+    font-size: 13px;
+  }
+  
+  /* Ghost / Login */
+  .hdr-btn--ghost {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--c-text);
+    border: 1px solid var(--c-border);
+  }
+  
+  .hdr-btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.15);
+  }
+  
+  /* Primary / Join Arena */
+  .hdr-btn--primary {
+    background: linear-gradient(135deg, var(--c-purple) 0%, #06b6d4 100%);
+    color: var(--c-white);
+    border: 1px solid transparent;
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.4);
+  }
+  
+  .hdr-btn--primary:hover {
+    box-shadow: 0 0 28px rgba(0, 229, 255, 0.45), 0 4px 14px rgba(0, 0, 0, 0.4);
+    transform: translateY(-1px);
+  }
+  
+  /* Full-width variant for mobile drawer */
+  .hdr-btn--full {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 18px;
+    font-size: 15px;
+  }
+  
+  /* ── Hamburger ───────────────────────────────────────────────── */
+  .hdr-burger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--c-border);
+    color: var(--c-text);
+    font-size: 17px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background var(--transition), color var(--transition);
+    margin-left: auto;
+  }
+  
+  .hdr-burger:hover,
+  .hdr-burger--open {
+    background: rgba(139, 92, 246, 0.18);
+    color: var(--c-cyan);
+    border-color: var(--c-purple);
+  }
+  
+  /* ── Mobile Drawer ───────────────────────────────────────────── */
+  .hdr-drawer {
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    background: rgba(10, 10, 15, 0.97);
+    border-top: 1px solid var(--c-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.35s ease;
+    padding: 0 20px;
+  }
+  
+  .hdr-drawer--open {
+    max-height: 520px;
+    padding: 16px 20px 24px;
+  }
+  
+  .hdr-drawer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+  
+  .hdr-drawer__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--c-border);
+    transition: color var(--transition), background var(--transition);
+  }
+  
+  .hdr-drawer__link:last-child {
+    border-bottom: none;
+  }
+  
+  .hdr-drawer__link:hover {
+    color: var(--c-text);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  
+  .hdr-drawer__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* ── Responsive breakpoints ──────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hdr-nav,
+    .hdr-actions {
+      display: none;
+    }
+  
+    .hdr-burger {
+      display: flex;
+    }
+  
+    .hdr-drawer {
+      display: flex;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hdr-inner {
+      padding: 0 16px;
+      gap: 16px;
+    }
+  
+    .hdr-logo__name {
+      font-size: 17px;
+    }
+  }
+  
+  /* ── Reduced motion ──────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .hdr-btn,
+    .hdr-nav__link::after,
+    .hdr-drawer {
+      transition: none;
+    }
+  
+    .hdr-nav__badge {
+      animation: none;
+    }
+  }
