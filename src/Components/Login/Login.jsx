@@ -135,38 +135,44 @@ function Login() {
           </div>
 
           {/* Password */}
-          <div className="input-group password-group">
+          <div className="input-group">
             <label>Password</label>
 
-            <input
-              type={
-                showPassword
-                  ? "text"
-                  : "password"
-              }
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              autoComplete="current-password"
-              required
-            />
+            {/* Dedicated wrapper around just the input + toggle button,
+                so the eye icon centers on the input itself — not on the
+                label-plus-input block — at every breakpoint. */}
+            <div className="password-field-wrapper">
+              <input
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                autoComplete="current-password"
+                required
+              />
 
-            <button
-              type="button"
-              className="password-toggle"
-              onClick={() =>
-                setShowPassword(
-                  !showPassword
-                )
-              }
-            >
-              {showPassword ? (
-                <FaEyeSlash />
-              ) : (
-                <FaEye />
-              )}
-            </button>
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() =>
+                  setShowPassword(
+                    !showPassword
+                  )
+                }
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <FaEyeSlash />
+                ) : (
+                  <FaEye />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Forgot Password */}

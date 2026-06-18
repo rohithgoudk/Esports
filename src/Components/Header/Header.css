@@ -1,12 +1,10 @@
 /* ============================================================
    HEADER — Stackly Arena
-   Tokens match the Home page: dark void bg, cyan/purple glows
    ============================================================ */
 
    :root {
-    --hdr-height: 72px;
+    --hdr-height: 68px;
   
-    /* palette — copy these from Home.css if you have them there */
     --c-bg:        #0a0a0f;
     --c-surface:   #0f0f1a;
     --c-border:    rgba(255, 255, 255, 0.07);
@@ -39,13 +37,13 @@
   }
   
   .hdr--scrolled {
-    background: rgba(10, 10, 15, 0.88);
+    background: rgba(10, 10, 15, 0.92);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     box-shadow: 0 1px 0 var(--c-border), 0 8px 32px rgba(0, 0, 0, 0.5);
   }
   
-  /* top 1px accent line */
+  /* top accent line */
   .hdr-topline {
     position: absolute;
     top: 0;
@@ -70,10 +68,12 @@
     padding: 0 24px;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
-  /* ── Logo ────────────────────────────────────────────────────── */
+  /* ── Logo ───────────────────────────────────────────────────── */
   .hdr-logo {
     display: flex;
     align-items: center;
@@ -82,18 +82,16 @@
     flex-shrink: 0;
   }
   
-  /* Image-based logo (used when you have the .webp asset) */
   .hdr-logo__img {
-    height: 65px;
+    height: 52px;
     width: auto;
     display: block;
     object-fit: contain;
   }
   
-  /* Fallback icon mark */
   .hdr-logo__mark {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: var(--radius-sm);
     background: linear-gradient(135deg, var(--c-purple) 0%, var(--c-cyan) 100%);
     display: flex;
@@ -137,7 +135,7 @@
   .hdr-nav {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     flex: 1;
     justify-content: center;
   }
@@ -147,9 +145,9 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 14px;
+    padding: 8px 12px;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
     letter-spacing: 0.03em;
     color: var(--c-muted);
@@ -164,13 +162,12 @@
     background: rgba(255, 255, 255, 0.05);
   }
   
-  /* active underline on hover */
   .hdr-nav__link::after {
     content: "";
     position: absolute;
     bottom: 4px;
-    left: 14px;
-    right: 14px;
+    left: 12px;
+    right: 12px;
     height: 2px;
     border-radius: 1px;
     background: linear-gradient(90deg, var(--c-purple), var(--c-cyan));
@@ -183,7 +180,6 @@
     transform: scaleX(1);
   }
   
-  /* LIVE badge */
   .hdr-nav__badge {
     display: inline-flex;
     align-items: center;
@@ -196,8 +192,6 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     border: 1px solid rgba(239, 68, 68, 0.35);
-  
-    /* pulse dot via box-shadow animation */
     animation: badge-pulse 2s ease-in-out infinite;
   }
   
@@ -210,7 +204,7 @@
   .hdr-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-shrink: 0;
   }
   
@@ -218,10 +212,10 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 9px 18px;
+    padding: 9px 16px;
     border-radius: var(--radius-md);
     font-family: var(--font-body);
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.03em;
     cursor: pointer;
@@ -240,7 +234,6 @@
     font-size: 13px;
   }
   
-  /* Ghost / Login */
   .hdr-btn--ghost {
     background: rgba(255, 255, 255, 0.06);
     color: var(--c-text);
@@ -253,7 +246,6 @@
     box-shadow: 0 0 12px rgba(139, 92, 246, 0.15);
   }
   
-  /* Primary / Join Arena */
   .hdr-btn--primary {
     background: linear-gradient(135deg, var(--c-purple) 0%, #06b6d4 100%);
     color: var(--c-white);
@@ -266,11 +258,10 @@
     transform: translateY(-1px);
   }
   
-  /* Full-width variant for mobile drawer */
   .hdr-btn--full {
     width: 100%;
     justify-content: center;
-    padding: 13px 18px;
+    padding: 14px 18px;
     font-size: 15px;
   }
   
@@ -288,7 +279,8 @@
     font-size: 17px;
     cursor: pointer;
     flex-shrink: 0;
-    transition: background var(--transition), color var(--transition);
+    transition: background var(--transition), color var(--transition),
+      border-color var(--transition);
     margin-left: auto;
   }
   
@@ -305,32 +297,34 @@
     flex-direction: column;
     overflow: hidden;
     max-height: 0;
-    background: rgba(10, 10, 15, 0.97);
+    background: rgba(8, 8, 14, 0.98);
     border-top: 1px solid var(--c-border);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
       padding 0.35s ease;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .hdr-drawer--open {
-    max-height: 520px;
-    padding: 16px 20px 24px;
+    max-height: 600px;
+    padding: 12px 20px 28px;
   }
   
   .hdr-drawer__nav {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
     margin-bottom: 20px;
   }
   
   .hdr-drawer__link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 13px 12px;
+    gap: 10px;
+    padding: 14px 12px;
     border-radius: var(--radius-sm);
     font-family: var(--font-body);
     font-size: 15px;
@@ -338,25 +332,39 @@
     color: var(--c-muted);
     text-decoration: none;
     border-bottom: 1px solid var(--c-border);
-    transition: color var(--transition), background var(--transition);
+    transition: color var(--transition), background var(--transition),
+      padding-left var(--transition);
   }
   
   .hdr-drawer__link:last-child {
     border-bottom: none;
   }
   
-  .hdr-drawer__link:hover {
+  .hdr-drawer__link:hover,
+  .hdr-drawer__link:active {
     color: var(--c-text);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(139, 92, 246, 0.08);
+    padding-left: 18px;
   }
   
   .hdr-drawer__actions {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-top: 4px;
   }
   
-  /* ── Responsive breakpoints ──────────────────────────────────── */
+  /* ── Responsive ──────────────────────────────────────────────── */
+  
+  /* Tablet: hide nav text labels for Join Arena, keep icons */
+  @media (max-width: 1024px) {
+    .hdr-nav__link {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+  }
+  
+  /* Below 900px: collapse to hamburger */
   @media (max-width: 900px) {
     .hdr-nav,
     .hdr-actions {
@@ -372,14 +380,71 @@
     }
   }
   
+  /* Small phones */
   @media (max-width: 480px) {
+    :root {
+      --hdr-height: 60px;
+    }
+  
     .hdr-inner {
       padding: 0 16px;
-      gap: 16px;
+      gap: 12px;
+    }
+  
+    .hdr-logo__img {
+      height: 42px;
     }
   
     .hdr-logo__name {
-      font-size: 17px;
+      font-size: 16px;
+    }
+  
+    .hdr-logo__tagline {
+      font-size: 9px;
+    }
+  
+    .hdr-burger {
+      width: 36px;
+      height: 36px;
+      font-size: 15px;
+    }
+  
+    .hdr-drawer--open {
+      padding: 10px 16px 24px;
+    }
+  
+    .hdr-drawer__link {
+      font-size: 14px;
+      padding: 13px 10px;
+    }
+  
+    .hdr-btn--full {
+      font-size: 14px;
+      padding: 13px 16px;
+    }
+  }
+  
+  /* Very small phones */
+  @media (max-width: 360px) {
+    .hdr-inner {
+      padding: 0 12px;
+    }
+  
+    .hdr-logo__img {
+      height: 36px;
+    }
+  
+    .hdr-logo__name {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+  
+    .hdr-drawer {
+      padding: 0 12px;
+    }
+  
+    .hdr-drawer--open {
+      padding: 10px 12px 20px;
     }
   }
   
@@ -387,7 +452,9 @@
   @media (prefers-reduced-motion: reduce) {
     .hdr-btn,
     .hdr-nav__link::after,
-    .hdr-drawer {
+    .hdr-drawer,
+    .hdr-drawer__link,
+    .hdr-burger {
       transition: none;
     }
   

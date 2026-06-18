@@ -1,4 +1,5 @@
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaTrophy,
@@ -21,85 +22,30 @@ import E11 from "../../assets/E11.webp";
 import E12 from "../../assets/E12.webp";
 
 function Home() {
+  const navigate = useNavigate();
+
   const games = [
-    {
-      name: "VALORANT",
-      tag: "Tactical FPS",
-      image: ES1,
-    },
-    {
-      name: "Counter-Strike 2",
-      tag: "Tactical FPS",
-      image: ES2,
-    },
-    {
-      name: "League of Legends",
-      tag: "MOBA",
-      image: ES3,
-    },
+    { name: "VALORANT", tag: "Tactical FPS", image: ES1 },
+    { name: "Counter-Strike 2", tag: "Tactical FPS", image: ES2 },
+    { name: "League of Legends", tag: "MOBA", image: ES3 },
   ];
 
   const tournaments = [
-    {
-      name: "Ignition Masters",
-      game: "VALORANT",
-      prize: "$50,000",
-      date: "JUL 12–14",
-    },
-    {
-      name: "Overdrive Championship",
-      game: "Counter-Strike 2",
-      prize: "$75,000",
-      date: "AUG 02–05",
-    },
-    {
-      name: "Rift World Cup",
-      game: "League of Legends",
-      prize: "$100,000",
-      date: "SEP 18–21",
-    },
+    { name: "Ignition Masters", game: "VALORANT", prize: "$50,000", date: "JUL 12–14" },
+    { name: "Overdrive Championship", game: "Counter-Strike 2", prize: "$75,000", date: "AUG 02–05" },
+    { name: "Rift World Cup", game: "League of Legends", prize: "$100,000", date: "SEP 18–21" },
   ];
 
   const teams = [
-    {
-      name: "Shadow Reapers",
-      division: "VALORANT Division",
-      record: "18–3",
-      image: ES4,
-    },
-    {
-      name: "Cyber Titans",
-      division: "CS2 Division",
-      record: "21–5",
-      image: ES5,
-    },
-    {
-      name: "Neon Warriors",
-      division: "League Division",
-      record: "16–6",
-      image: E5,
-    },
+    { name: "Shadow Reapers", division: "VALORANT Division", record: "18–3", image: ES4 },
+    { name: "Cyber Titans", division: "CS2 Division", record: "21–5", image: ES5 },
+    { name: "Neon Warriors", division: "League Division", record: "16–6", image: E5 },
   ];
 
   const streams = [
-    {
-      title: "Ignition Masters — Semifinal",
-      viewers: "42.1K",
-      game: "VALORANT",
-      image: E2,
-    },
-    {
-      title: "Overdrive Quals — Map 3",
-      viewers: "18.7K",
-      game: "CS2",
-      image: E6,
-    },
-    {
-      title: "Rift Cup — Group Stage",
-      viewers: "29.4K",
-      game: "League",
-      image: E11,
-    },
+    { title: "Ignition Masters — Semifinal", viewers: "42.1K", game: "VALORANT", image: E2 },
+    { title: "Overdrive Quals — Map 3", viewers: "18.7K", game: "CS2", image: E6 },
+    { title: "Rift Cup — Group Stage", viewers: "29.4K", game: "League", image: E11 },
   ];
 
   return (
@@ -128,8 +74,10 @@ function Home() {
           </p>
 
           <div className="hero-buttons">
-            <button className="primary-btn">Enter the Bracket</button>
-            <button className="secondary-btn">
+            <button className="primary-btn" onClick={() => navigate("/404")}>
+              Enter the Bracket
+            </button>
+            <button className="secondary-btn" onClick={() => navigate("/404")}>
               <FaPlayCircle /> Watch Live
             </button>
           </div>
@@ -272,7 +220,7 @@ function Home() {
             Find teammates, scrim partners, and a few thousand people who
             will absolutely tilt with you after a close round.
           </p>
-          <button>
+          <button onClick={() => navigate("/404")}>
             <FaDiscord /> Join the Discord
           </button>
         </div>

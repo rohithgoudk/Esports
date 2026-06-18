@@ -13,10 +13,13 @@ import Teams from "./Components/Teams/Teams";
 import Streams from "./Components/Streams/Streams";
 import Community from "./Components/Community/Community";
 import Tournaments from "./Components/Tournaments/Tournaments";
+import "./App.css"
+import ScrollToTop from "./Components/ScrollToTop"
 
 function App() {
   return (
     <HashRouter>
+      <ScrollToTop /> 
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />

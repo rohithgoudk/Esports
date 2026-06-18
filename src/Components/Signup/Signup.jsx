@@ -17,7 +17,6 @@ function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -65,6 +64,8 @@ function SignUp() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  // Only once every field passes validation does "Create account" do
+  // anything — at that point it sends the user to the 404 page.
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -72,25 +73,8 @@ function SignUp() {
       setErrors(validationErrors);
       return;
     }
-    setSubmitted(true);
+    navigate("/404");
   };
-
-  if (submitted) {
-    return (
-      <div className="signup-page">
-        <div className="bg-blob blob-1" />
-        <div className="bg-blob blob-2" />
-        <div className="signup-card success-card">
-          <div className="success-icon">🎉</div>
-          <h2>Account created!</h2>
-          <p>Welcome aboard, <strong>{form.username}</strong>. Your account is ready.</p>
-          <button className="btn-primary" onClick={() => navigate("/")}>
-            Go to Login →
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="signup-page">
@@ -117,7 +101,7 @@ function SignUp() {
 
         {/* Social login */}
         <div className="social-row">
-          <button className="social-btn">
+          <button className="social-btn" onClick={() => navigate("/404")}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -126,7 +110,7 @@ function SignUp() {
             </svg>
             Continue with Google
           </button>
-          <button className="social-btn">
+          <button className="social-btn" onClick={() => navigate("/404")}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.119 20.452H3.558V8.999h3.561v11.453zM5.338 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zm15.114 13.019h-3.556v-5.569c0-1.328-.025-3.038-1.851-3.038-1.853 0-2.136 1.447-2.136 2.941v5.666H9.353V8.999h3.414v1.561h.049c.475-.9 1.637-1.85 3.369-1.85 3.603 0 4.267 2.372 4.267 5.455v6.287z" />
             </svg>

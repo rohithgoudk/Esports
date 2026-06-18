@@ -58,7 +58,7 @@ function Footer() {
           </h4>
 
           <ul>
-            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/games">Games</Link></li>
             <li><Link to="/tournaments">Tournaments</Link></li>
             <li><Link to="/teams">Teams</Link></li>
@@ -81,9 +81,10 @@ function Footer() {
                 Email
               </span>
 
-              <a href="mailto:stackly@gmail.com">
+              <p>
                 stackly@Esport.com
-              </a>
+              </p>
+              
             </li>
 
             <li>
@@ -91,9 +92,17 @@ function Footer() {
                 Phone
               </span>
 
-              <a href="tel:+919876543210">
+              <p >
                 +12 45632890890
-              </a>
+              </p>
+            </li>
+            <li>
+            <span className="footer-contact-label">
+                Location
+              </span>
+              <p>
+                Hyderabad,India
+              </p>
             </li>
           </ul>
         </div>

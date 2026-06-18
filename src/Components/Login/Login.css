@@ -99,6 +99,7 @@
   .login-logo {
     height: 48px;
     width: auto;
+    max-width: 100%;
     object-fit: contain;
   }
   
@@ -141,7 +142,8 @@
   .input-group select {
     width: 100%;
     padding: 13px 16px;
-    font-size: 0.95rem;
+    /* 16px stops iOS Safari from auto-zooming the page on focus */
+    font-size: 1rem;
     font-family: inherit;
     color: var(--text-primary) !important;
     background: #f8fafc;
@@ -178,19 +180,38 @@
   
   /* ============================================
      PASSWORD FIELD
+     A dedicated wrapper around ONLY the input + toggle button (not the
+     label), so the eye icon centers on the input box itself instead of
+     relying on a fixed "top" offset that breaks if the label wraps.
      ============================================ */
-  .password-group {
+  .password-field-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
   }
   
-  .password-group input {
+  .password-field-wrapper input {
+    width: 100%;
     padding-right: 48px;
+  }
+  
+  /* Hide the native password-reveal icon in Edge/IE (::-ms-reveal) and
+     the native "clear" icon (::-ms-clear) so it doesn't render a second,
+     overlapping eye icon next to our custom toggle button. */
+  .password-field-wrapper input[type="password"]::-ms-reveal,
+  .password-field-wrapper input[type="password"]::-ms-clear,
+  .password-field-wrapper input[type="text"]::-ms-reveal,
+  .password-field-wrapper input[type="text"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
   }
   
   .password-toggle {
     position: absolute;
     right: 14px;
-    top: 41px;
+    top: 50%;
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     color: var(--text-secondary);
@@ -282,12 +303,95 @@
   /* ============================================
      RESPONSIVE
      ============================================ */
+  @media (max-width: 600px) {
+    .login-container {
+      padding: 28px 16px;
+      align-items: flex-start;
+    }
+  
+    .login-card {
+      margin-top: 12px;
+    }
+  }
+  
   @media (max-width: 480px) {
     .login-card {
-      padding: 36px 24px 32px;
+      padding: 32px 24px 28px;
+    }
+  
+    .login-header {
+      margin-bottom: 26px;
     }
   
     .login-header h1 {
       font-size: 1.45rem;
+    }
+  
+    .login-header p {
+      font-size: 0.88rem;
+    }
+  
+    .login-logo {
+      height: 42px;
+    }
+  
+    .back-home-btn {
+      margin-bottom: 22px;
+      font-size: 0.82rem;
+    }
+  
+    .input-group {
+      margin-bottom: 16px;
+    }
+  
+    .input-group input,
+    .input-group select {
+      padding: 12px 14px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .login-container {
+      padding: 20px 10px;
+    }
+  
+    .login-card {
+      padding: 26px 16px 24px;
+      border-radius: 12px;
+    }
+  
+    .login-header h1 {
+      font-size: 1.3rem;
+    }
+  
+    .login-header p {
+      font-size: 0.82rem;
+    }
+  
+    .login-logo {
+      height: 38px;
+    }
+  
+    .input-group input,
+    .input-group select {
+      padding: 11px 12px;
+    }
+  
+    .login-btn {
+      padding: 12px;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .login-card {
+      animation: none;
+    }
+  
+    .back-home-btn,
+    .login-btn,
+    .password-toggle,
+    .forgot-password a,
+    .signup-link {
+      transition: none;
     }
   }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Admindashboard.css";
-import { FaBolt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/Stacklyimg1.webp"
 
 const usersData = [
   { id: 1, name: "Aiko Chen", email: "a.chen@nexus.gg", role: "Head Coach", status: "Active", lastLogin: "Today, 9:14 AM", teams: 2, avatar: "AC" },
@@ -63,9 +63,22 @@ const statusColors = {
 export default function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("overview");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    navigate("/login")
+    navigate("/login");
+  };
+
+  // Overview scrolls back to the top of this same page.
+  // Every other sidebar link goes to the 404 page for now.
+  const handleNavClick = (item) => {
+    setSidebarOpen(false);
+    setActiveNav(item.id);
+    if (item.id === "overview") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/404");
+    }
   };
 
   return (
@@ -78,13 +91,12 @@ export default function AdminDashboard() {
       <aside className={`admin-sidebar ${sidebarOpen ? "sidebar-open" : ""}`}>
         <div className="admin-sidebar-header">
           <div className="admin-brand">
-            <div className="admin-brand-mark">
-              <FaBolt />
-            </div>
-            <div className="admin-brand-text">
-              <span className="admin-brand-name">NEXUS</span>
-              <span className="admin-brand-sub">Admin Console</span>
-            </div>
+            {/* Logo placeholder — swap the src below for your own logo */}
+            <img
+              className="admin-brand-logo-img"
+              src={logo}
+              alt="Org logo"
+            />
           </div>
           <button className="admin-close-btn" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
             ✕
@@ -97,7 +109,7 @@ export default function AdminDashboard() {
             <button
               key={item.id}
               className={`admin-nav-item ${activeNav === item.id ? "admin-nav-active" : ""}`}
-              onClick={() => { setActiveNav(item.id); setSidebarOpen(false); }}
+              onClick={() => handleNavClick(item)}
             >
               <span className="admin-nav-icon">{item.icon}</span>
               <span className="admin-nav-label">{item.label}</span>
@@ -113,7 +125,7 @@ export default function AdminDashboard() {
             <button
               key={item.id}
               className={`admin-nav-item ${activeNav === item.id ? "admin-nav-active" : ""}`}
-              onClick={() => { setActiveNav(item.id); setSidebarOpen(false); }}
+              onClick={() => handleNavClick(item)}
             >
               <span className="admin-nav-icon">{item.icon}</span>
               <span className="admin-nav-label">{item.label}</span>
@@ -155,12 +167,17 @@ export default function AdminDashboard() {
               <span className="admin-search-icon">🔍</span>
               <input placeholder="Search staff, logs, settings…" />
             </div>
-            <button className="admin-icon-btn" aria-label="Alerts">
+            <button className="admin-icon-btn" aria-label="Alerts" onClick={() => navigate("/404")}>
               🔔
               <span className="admin-notif-dot" />
             </button>
             <div className="admin-role-chip">Super Admin</div>
-            <div className="admin-topbar-avatar">JR</div>
+            {/* Avatar placeholder — swap the src below for your own image */}
+            <img
+              className="admin-topbar-avatar-img"
+              src="https://placehold.co/38x38/1b1b29/f5f5f7?text=You"
+              alt="User avatar"
+            />
           </div>
         </header>
 
@@ -214,7 +231,7 @@ export default function AdminDashboard() {
                   <h2 className="admin-card-title">Staff Management</h2>
                   <p className="admin-card-sub">All org accounts</p>
                 </div>
-                <button className="admin-btn-outline">+ Invite Staff</button>
+                <button className="admin-btn-outline" onClick={() => navigate("/404")}>+ Invite Staff</button>
               </div>
               <div className="admin-table-wrapper">
                 <table className="admin-table">
@@ -246,8 +263,8 @@ export default function AdminDashboard() {
                         <td className="admin-proj-col">{u.teams}</td>
                         <td>
                           <div className="admin-actions">
-                            <button className="admin-action-btn" title="Edit">✏️</button>
-                            <button className="admin-action-btn danger" title="Remove">🗑️</button>
+                            <button className="admin-action-btn" title="Edit" onClick={() => navigate("/404")}>✏️</button>
+                            <button className="admin-action-btn danger" title="Remove" onClick={() => navigate("/404")}>🗑️</button>
                           </div>
                         </td>
                       </tr>
@@ -287,7 +304,7 @@ export default function AdminDashboard() {
                   <h2 className="admin-card-title">Role Permissions</h2>
                   <p className="admin-card-sub">Access matrix</p>
                 </div>
-                <button className="admin-btn-outline">Edit Roles</button>
+                <button className="admin-btn-outline" onClick={() => navigate("/404")}>Edit Roles</button>
               </div>
               <div className="admin-perms-body">
                 {[
@@ -335,7 +352,7 @@ export default function AdminDashboard() {
                     <span className="admin-billing-value">{b.value}</span>
                   </div>
                 ))}
-                <button className="admin-billing-cta">Manage Subscription</button>
+                <button className="admin-billing-cta" onClick={() => navigate("/404")}>Manage Subscription</button>
               </div>
             </div>
 
@@ -389,7 +406,7 @@ export default function AdminDashboard() {
                 <h2 className="admin-card-title">Integrations & Add-ons</h2>
                 <p className="admin-card-sub">Connected services powering the org</p>
               </div>
-              <button className="admin-btn-outline">+ Add Integration</button>
+              <button className="admin-btn-outline" onClick={() => navigate("/404")}>+ Add Integration</button>
             </div>
             <div className="admin-integrations-grid">
               {integrations.map((it, i) => (
@@ -406,7 +423,7 @@ export default function AdminDashboard() {
                   >
                     {it.status}
                   </span>
-                  <button className="admin-btn-outline admin-integration-btn">Manage</button>
+                  <button className="admin-btn-outline admin-integration-btn" onClick={() => navigate("/404")}>Manage</button>
                 </div>
               ))}
             </div>

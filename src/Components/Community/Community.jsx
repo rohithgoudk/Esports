@@ -1,9 +1,9 @@
 import "./Community.css";
+import { useNavigate } from "react-router-dom";
 import { FaDiscord, FaTwitter, FaRedditAlien, FaTwitch } from "react-icons/fa";
 
 import ES3 from "../../assets/ES3.webp";
 
-// Real platform brand colors — same pattern as the game accents in Teams/Streams
 const channels = [
   {
     name: "Discord",
@@ -40,12 +40,11 @@ const channels = [
 ];
 
 function Community() {
+  const navigate = useNavigate();
+
   return (
     <section className="community">
-      <div
-        className="community-bg"
-        style={{ backgroundImage: `url(${ES3})` }}
-      />
+      <div className="community-bg" style={{ backgroundImage: `url(${ES3})` }} />
       <div className="community-overlay" />
 
       <div className="community-inner">
@@ -54,7 +53,7 @@ function Community() {
           Find teammates, scrim partners, and a few thousand people who will
           absolutely tilt with you after a close round.
         </p>
-        <button className="community-discord-btn">
+        <button className="community-discord-btn" onClick={() => navigate("/404")}>
           <FaDiscord /> Join the Discord
         </button>
       </div>
@@ -80,7 +79,12 @@ function Community() {
                 <h3>{channel.name}</h3>
                 <p className="channel-desc">{channel.description}</p>
                 <span className="channel-stat">{channel.stat}</span>
-                <button className="channel-cta">{channel.cta}</button>
+                <button
+                  className="channel-cta"
+                  onClick={() => navigate("/404")}
+                >
+                  {channel.cta}
+                </button>
               </div>
             );
           })}

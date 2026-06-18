@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Dashboard.css";
-import { FaBolt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/Stacklyimg1.webp"
 
 // Same brand colors used in Teams.jsx / Streams.jsx / Community.jsx —
 // reused here so the dashboard reads as part of the same site.
@@ -24,7 +24,6 @@ const roster = [
   { name: "Kai 'Ronin' Alvarez", role: "Duelist — VALORANT", matches: 14, avatar: "KA", status: "active" },
   { name: "Mira Solheim", role: "IGL — CS2", matches: 11, avatar: "MS", status: "active" },
   { name: "Tobias Reyes", role: "Jungle — League", matches: 9, avatar: "TR", status: "away" },
-  { name: "Yuna Park", role: "Mid Lane — Dota 2", matches: 12, avatar: "YP", status: "active" },
 ];
 
 const liveFeed = [
@@ -57,9 +56,22 @@ const statusColors = {
 export default function Esports() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("dashboard");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    navigate("/login")
+    navigate("/login");
+  };
+
+  // Dashboard scrolls back to the top of this same page.
+  // Every other sidebar link goes to the 404 page for now.
+  const handleNavClick = (item) => {
+    setSidebarOpen(false);
+    setActiveNav(item.id);
+    if (item.id === "dashboard") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/404");
+    }
   };
 
   return (
@@ -72,13 +84,12 @@ export default function Esports() {
       <aside className={`sidebar ${sidebarOpen ? "sidebar-open" : ""}`}>
         <div className="sidebar-header">
           <div className="brand">
-            <div className="brand-mark">
-              <FaBolt />
-            </div>
-            <div className="brand-text">
-              <span className="brand-name">NEXUS</span>
-              <span className="brand-sub">Esports Ops</span>
-            </div>
+            {/* Logo placeholder — swap the src below for your own logo */}
+            <img
+              className="brand-logo-img"
+              src={logo}
+              alt="Org logo"
+            />
           </div>
           <button className="close-btn" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
             ✕
@@ -91,7 +102,7 @@ export default function Esports() {
             <button
               key={item.id}
               className={`nav-item ${activeNav === item.id ? "nav-active" : ""}`}
-              onClick={() => { setActiveNav(item.id); setSidebarOpen(false); }}
+              onClick={() => handleNavClick(item)}
             >
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-label">{item.label}</span>
@@ -106,7 +117,7 @@ export default function Esports() {
             <button
               key={item.id}
               className={`nav-item ${activeNav === item.id ? "nav-active" : ""}`}
-              onClick={() => { setActiveNav(item.id); setSidebarOpen(false); }}
+              onClick={() => handleNavClick(item)}
             >
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-label">{item.label}</span>
@@ -129,7 +140,7 @@ export default function Esports() {
             </button>
             <div className="page-title">
               <h1>Dashboard</h1>
-              <p>Welcome back, Jordan — here's your org's live overview.</p>
+              <p>Welcome back — here's your org's live overview.</p>
             </div>
           </div>
           <div className="topbar-right">
@@ -137,11 +148,16 @@ export default function Esports() {
               <span className="search-icon">🔍</span>
               <input placeholder="Search teams, players, matches…" />
             </div>
-            <button className="icon-btn notif-btn" aria-label="Notifications">
+            <button className="icon-btn notif-btn" aria-label="Notifications" onClick={() => navigate("/404")}>
               🔔
               <span className="notif-dot" />
             </button>
-            <div className="topbar-avatar">JR</div>
+            {/* Avatar placeholder — swap the src below for your own image */}
+            <img
+              className="topbar-avatar-img"
+              src="https://placehold.co/38x38/1b1b29/f5f5f7?text=You"
+              alt="User avatar"
+            />
           </div>
         </header>
 
@@ -195,7 +211,7 @@ export default function Esports() {
                   <h2 className="card-title">Active Tournaments</h2>
                   <p className="card-sub">Current circuit overview</p>
                 </div>
-                <button className="btn-outline">View All</button>
+                <button className="btn-outline" onClick={() => navigate("/404")}>View All</button>
               </div>
               <div className="table-wrapper">
                 <table className="tournaments-table">
@@ -275,7 +291,7 @@ export default function Esports() {
                   <h2 className="card-title">Roster</h2>
                   <p className="card-sub">Active players</p>
                 </div>
-                <button className="btn-outline">Manage</button>
+                <button className="btn-outline" onClick={() => navigate("/404")}>Manage</button>
               </div>
               <ul className="team-list">
                 {roster.map((m, i) => (

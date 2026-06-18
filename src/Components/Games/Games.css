@@ -1,8 +1,5 @@
 /* =========================================================
-   GAMES.CSS — full games catalog page
-   Same dark broadcast palette as Home.css, plus support for
-   each game's own accent color (set via inline style / the
-   --accent custom property) on cards and status badges.
+   GAMES.CSS
    ========================================================= */
 
    .games-page {
@@ -21,6 +18,8 @@
     color: var(--text);
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
   
   .games-page * {
@@ -42,19 +41,19 @@
   }
   
   .section-title {
-    font-size: clamp(26px, 3.6vw, 36px);
+    font-size: clamp(22px, 3.6vw, 36px);
     font-weight: 800;
     letter-spacing: -0.01em;
     margin: 0;
     color: #ffffff;
   }
   
-  /* Shared buttons, reused across hero + CTA */
-  
+  /* Shared buttons */
   .games-btn-primary,
   .games-btn-secondary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 9px;
     font-size: 14.5px;
     font-weight: 700;
@@ -62,6 +61,7 @@
     border-radius: 999px;
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    white-space: nowrap;
   }
   
   .games-btn-primary {
@@ -95,8 +95,11 @@
     min-height: 78vh;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     overflow: hidden;
-    padding: 130px 6vw 110px;
+    padding: 130px 5vw 110px;
+    gap: 40px;
+    width: 100%;
   }
   
   .games-hero-bg {
@@ -141,16 +144,18 @@
     position: relative;
     z-index: 3;
     max-width: 560px;
+    width: 100%;
   }
   
   .games-hero-title {
-    font-size: clamp(36px, 5.6vw, 58px);
+    font-size: clamp(30px, 5.6vw, 58px);
     font-weight: 900;
     line-height: 1.08;
     letter-spacing: -0.02em;
     margin: 0 0 20px;
     color: #ffffff;
     text-transform: uppercase;
+    word-break: break-word;
   }
   
   .games-hero-accent {
@@ -161,7 +166,7 @@
   }
   
   .games-hero-desc {
-    font-size: 16.5px;
+    font-size: clamp(14px, 2vw, 16.5px);
     line-height: 1.65;
     color: var(--text-muted);
     max-width: 460px;
@@ -171,18 +176,17 @@
   .games-hero-btns {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
   }
   
-  /* Floating featured-game card */
-  
+  /* Floating featured card */
   .games-hero-card {
     position: absolute;
     z-index: 4;
-    right: 6vw;
+    right: 5vw;
     bottom: -54px;
-    width: 280px;
+    width: 270px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 18px;
@@ -203,7 +207,7 @@
   
   .games-hero-card h3 {
     margin: 0 0 4px;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 800;
     color: #ffffff;
   }
@@ -248,15 +252,8 @@
     color: #ffffff;
   }
   
-  .star-on {
-    color: var(--gold);
-    display: inline-flex;
-  }
-  
-  .star-off {
-    color: rgba(255, 255, 255, 0.15);
-    display: inline-flex;
-  }
+  .star-on  { color: var(--gold); display: inline-flex; }
+  .star-off { color: rgba(255, 255, 255, 0.15); display: inline-flex; }
   
   /* =========================================================
      STATS BAR
@@ -265,9 +262,10 @@
   .games-stats-bar {
     max-width: 1140px;
     margin: 90px auto 0;
-    padding: 0 6vw;
+    padding: 0 5vw;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    width: 100%;
   }
   
   .games-stat-item {
@@ -296,7 +294,7 @@
   }
   
   .games-stat-value {
-    font-size: 22px;
+    font-size: clamp(18px, 2.5vw, 22px);
     font-weight: 800;
     color: #ffffff;
     font-variant-numeric: tabular-nums;
@@ -315,7 +313,8 @@
   .games-catalog {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 110px 6vw 100px;
+    padding: 110px 5vw 100px;
+    width: 100%;
   }
   
   .games-catalog-head {
@@ -339,10 +338,11 @@
     color: var(--text-muted);
     font-size: 13px;
     font-weight: 700;
-    padding: 9px 18px;
+    padding: 9px 16px;
     border-radius: 999px;
     cursor: pointer;
     transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
   }
   
   .games-filter-tab:hover {
@@ -359,7 +359,8 @@
   .games-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 22px;
+    width: 100%;
   }
   
   .game-card {
@@ -370,6 +371,7 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
   }
   
   .game-card:hover {
@@ -380,6 +382,7 @@
   .game-card-img-wrap {
     position: relative;
     aspect-ratio: 16 / 10;
+    width: 100%;
   }
   
   .game-card-img {
@@ -403,8 +406,8 @@
   
   .game-card-status {
     position: absolute;
-    top: 14px;
-    left: 14px;
+    top: 12px;
+    left: 12px;
     z-index: 2;
     display: inline-flex;
     align-items: center;
@@ -414,7 +417,7 @@
     letter-spacing: 0.04em;
     border: 1px solid;
     border-radius: 999px;
-    padding: 5px 10px;
+    padding: 4px 10px;
   }
   
   .live-pulse {
@@ -426,17 +429,12 @@
   }
   
   @keyframes live-pulse-anim {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.25;
-    }
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.25; }
   }
   
   .game-card-body {
-    padding: 22px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -454,40 +452,41 @@
     background: rgba(34, 211, 238, 0.08);
     border-radius: 999px;
     padding: 4px 10px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   
   .game-card-name {
     margin: 0 0 8px;
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     font-weight: 800;
     color: #ffffff;
   }
   
   .game-card-desc {
-    margin: 0 0 18px;
-    font-size: 13.5px;
+    margin: 0 0 16px;
+    font-size: 13px;
     line-height: 1.55;
     color: var(--text-muted);
     display: -webkit-box;
-    
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
   
   .game-card-meta {
     display: flex;
-    gap: 18px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
     border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
   }
   
   .game-card-meta span {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--text-muted);
   }
   
@@ -500,7 +499,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   
   .game-card-stars {
@@ -511,7 +511,7 @@
   
   .game-rating {
     margin-left: 6px;
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
     color: #ffffff;
   }
@@ -520,7 +520,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--accent, #8b5cf6);
     background: color-mix(in srgb, var(--accent, #8b5cf6) 14%, transparent);
@@ -544,8 +544,9 @@
   .games-cta {
     position: relative;
     overflow: hidden;
-    padding: 120px 6vw;
+    padding: 100px 5vw;
     text-align: center;
+    width: 100%;
   }
   
   .games-cta-bg {
@@ -578,11 +579,12 @@
     z-index: 2;
     max-width: 600px;
     margin: 0 auto;
+    width: 100%;
   }
   
   .games-cta-content h2 {
     margin: 0 0 18px;
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(24px, 4vw, 40px);
     font-weight: 800;
     color: #ffffff;
     line-height: 1.2;
@@ -597,7 +599,7 @@
   
   .games-cta-content p {
     margin: 0 0 32px;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     line-height: 1.6;
     color: var(--text-muted);
   }
@@ -606,7 +608,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
   }
   
@@ -617,49 +619,119 @@
   @media (max-width: 980px) {
     .games-hero {
       min-height: auto;
-      padding: 110px 6vw 80px;
+      padding: 110px 5vw 60px;
+      flex-direction: column;
+      align-items: flex-start;
     }
+  
     .games-hero-card {
       position: static;
-      margin: 40px auto 0;
       width: 100%;
-      max-width: 360px;
+      max-width: 400px;
     }
+  
     .games-stats-bar {
-      margin-top: 50px;
+      margin-top: 60px;
       grid-template-columns: repeat(2, 1fr);
       row-gap: 28px;
     }
+  
     .games-stat-item:nth-child(3) {
       border-left: none;
       padding-left: 0;
     }
+  
     .games-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
   
   @media (max-width: 640px) {
-    .games-stats-bar {
-      grid-template-columns: 1fr;
+    .games-hero {
+      padding: 100px 16px 50px;
     }
+  
+    .games-hero-card {
+      max-width: 100%;
+    }
+  
+    .games-stats-bar {
+      margin-top: 40px;
+      padding: 0 16px;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 24px;
+    }
+  
     .games-stat-item {
       border-left: none;
       padding-left: 0;
     }
-    .games-grid {
-      grid-template-columns: 1fr;
+  
+    .games-stat-item:nth-child(even) {
+      border-left: 1px solid var(--border);
+      padding-left: 16px;
     }
+  
+    .games-catalog {
+      padding: 70px 16px 80px;
+    }
+  
     .games-catalog-head {
       align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
     }
+  
+    .games-filter-tabs {
+      width: 100%;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+  
+    .games-filter-tabs::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .games-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  
     .games-hero-btns,
     .games-cta-btns {
       flex-direction: column;
       width: 100%;
     }
+  
     .games-btn-primary,
     .games-btn-secondary {
+      width: 100%;
+    }
+  
+    .games-cta {
+      padding: 70px 16px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .games-stats-bar {
+      grid-template-columns: 1fr;
+    }
+  
+    .games-stat-item:nth-child(even) {
+      border-left: none;
+      padding-left: 0;
+    }
+  
+    .game-card-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .game-card-btn {
       width: 100%;
       justify-content: center;
     }

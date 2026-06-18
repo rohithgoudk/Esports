@@ -1,5 +1,6 @@
 import "./Games.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import ES1 from "../../assets/ES1.webp";
 import ES2 from "../../assets/ES2.webp";
@@ -139,7 +140,6 @@ const allGames = [
 ];
 
 const genres = ["All", "FPS", "MOBA", "Battle Royale", "Sports"];
-
 const featuredGame = allGames[0];
 
 const platformStats = [
@@ -149,10 +149,9 @@ const platformStats = [
   { icon: <IconBolt />,       value: "1M+",    label: "Hours Streamed"     },
 ];
 
-/* ─────────────────────────────────────────── */
-
 export default function Games() {
   const [activeGenre, setActiveGenre] = useState("All");
+  const navigate = useNavigate();
 
   const filtered =
     activeGenre === "All"
@@ -162,9 +161,7 @@ export default function Games() {
   return (
     <div className="games-page">
 
-      {/* ══════════════════════════════════════
-          SECTION 1 — HERO BANNER
-          ══════════════════════════════════════ */}
+      {/* HERO */}
       <section className="games-hero">
         <div
           className="games-hero-bg"
@@ -174,7 +171,6 @@ export default function Games() {
         <div className="games-hero-scanlines" />
 
         <div className="games-hero-content">
-          
           <h1 className="games-hero-title">
             Compete Across<br />
             <span className="games-hero-accent">50+ Titles</span>
@@ -184,10 +180,10 @@ export default function Games() {
             game, join the circuit, and prove you belong at the top.
           </p>
           <div className="games-hero-btns">
-            <button className="games-btn-primary">
+            <button className="games-btn-primary" onClick={() => navigate("/404")}>
               Browse All Games <IconArrow />
             </button>
-            <button className="games-btn-secondary">
+            <button className="games-btn-secondary" onClick={() => navigate("/404")}>
               <IconPlay /> Watch Highlights
             </button>
           </div>
@@ -197,7 +193,11 @@ export default function Games() {
         <div className="games-hero-card">
           <span
             className="games-status-badge"
-            style={{ background: featuredGame.accent + "22", color: featuredGame.accent, borderColor: featuredGame.accent + "44" }}
+            style={{
+              background: featuredGame.accent + "22",
+              color: featuredGame.accent,
+              borderColor: featuredGame.accent + "44",
+            }}
           >
             {featuredGame.status}
           </span>
@@ -218,9 +218,7 @@ export default function Games() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 2 — PLATFORM STATS BAR
-          ══════════════════════════════════════ */}
+      {/* STATS BAR */}
       <section className="games-stats-bar">
         {platformStats.map((s, i) => (
           <div className="games-stat-item" key={i}>
@@ -233,9 +231,7 @@ export default function Games() {
         ))}
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 3 — GENRE FILTER + GAMES GRID
-          ══════════════════════════════════════ */}
+      {/* CATALOG */}
       <section className="games-catalog">
         <div className="games-catalog-head">
           <div>
@@ -258,8 +254,6 @@ export default function Games() {
         <div className="games-grid">
           {filtered.map((game) => (
             <div className="game-card" key={game.id}>
-
-              {/* image */}
               <div className="game-card-img-wrap">
                 <img src={game.image} alt={game.name} className="game-card-img" />
                 <div className="game-card-img-overlay" />
@@ -277,7 +271,6 @@ export default function Games() {
                 </span>
               </div>
 
-              {/* body */}
               <div className="game-card-body">
                 <span className="game-card-tag">{game.tag}</span>
                 <h3 className="game-card-name">{game.name}</h3>
@@ -300,20 +293,18 @@ export default function Games() {
                   <button
                     className="game-card-btn"
                     style={{ "--accent": game.accent }}
+                    onClick={() => navigate("/404")}
                   >
                     Play Now <IconArrow />
                   </button>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 4 — CTA BANNER
-          ══════════════════════════════════════ */}
+      {/* CTA BANNER */}
       <section className="games-cta">
         <div className="games-cta-bg" />
         <div className="games-cta-overlay" />
@@ -325,10 +316,10 @@ export default function Games() {
             regional leaderboard — no entry fee for your first event.
           </p>
           <div className="games-cta-btns">
-            <button className="games-btn-primary">
+            <button className="games-btn-primary" onClick={() => navigate("/404")}>
               Register Free <IconArrow />
             </button>
-            <button className="games-btn-secondary">
+            <button className="games-btn-secondary" onClick={() => navigate("/404")}>
               View Schedule
             </button>
           </div>
