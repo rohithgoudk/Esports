@@ -229,9 +229,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background: rgba(11, 11, 18, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: var(--bg);
     z-index: 20;
   }
   

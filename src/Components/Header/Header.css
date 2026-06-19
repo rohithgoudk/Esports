@@ -37,9 +37,7 @@
   }
   
   .hdr--scrolled {
-    background: rgba(10, 10, 15, 0.92);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: var(--c-bg);
     box-shadow: 0 1px 0 var(--c-border), 0 8px 32px rgba(0, 0, 0, 0.5);
   }
   
@@ -299,8 +297,7 @@
     max-height: 0;
     background: rgba(8, 8, 14, 0.98);
     border-top: 1px solid var(--c-border);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    
     transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
       padding 0.35s ease;
     padding: 0 20px;

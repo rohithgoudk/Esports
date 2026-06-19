@@ -1,7 +1,9 @@
 import "./Notfound.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Notfound() {
+  const navigate = useNavigate();
+
   return (
     <div className="Notfound">
 
@@ -14,12 +16,25 @@ function Notfound() {
         renamed, or is temporarily unavailable.
       </p>
 
-      <Link
-        to="/"
-        className="back-home-btn"
-      >
-        Back To Home
-      </Link>
+      <div className="notfound-actions">
+
+        <button
+          className="back-home-btn back-btn"
+          onClick={() => navigate(-1)}
+        >
+          <span className="btn-icon">←</span>
+          Go Back
+        </button>
+
+        <Link
+          to="/"
+          className="back-home-btn primary-btn"
+        >
+          Back To Home
+          <span className="btn-icon">→</span>
+        </Link>
+
+      </div>
 
     </div>
   );

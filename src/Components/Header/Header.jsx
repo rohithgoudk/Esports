@@ -86,9 +86,9 @@ function Header() {
             <span>Login</span>
           </button>
 
-          <button className="hdr-btn hdr-btn--primary">
+          <button className="hdr-btn hdr-btn--primary" onClick={()=>{navigate("/signup"); setMenuOpen(false)}} >
             <FaTrophy className="hdr-btn__icon" />
-            <span>Join Arena</span>
+            <span >Join Arena</span>
           </button>
         </div>
 
@@ -150,7 +150,7 @@ function Header() {
             <span>Login</span>
           </button>
 
-          <button className="hdr-btn hdr-btn--primary hdr-btn--full">
+          <button className="hdr-btn hdr-btn--primary hdr-btn--full" onClick={()=>{navigate("/signup"); setMenuOpen(false)}}>
             <FaTrophy className="hdr-btn__icon" />
             <span>Join Arena</span>
           </button>
